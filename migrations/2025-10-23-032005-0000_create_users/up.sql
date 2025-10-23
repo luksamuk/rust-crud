@@ -1,0 +1,9 @@
+CREATE TABLE "users"(
+	"id" UUID NOT NULL PRIMARY KEY,
+	"username" VARCHAR NOT NULL UNIQUE,
+	"email" VARCHAR NOT NULL UNIQUE,
+	"password_hash" BYTEA NOT NULL,
+	"created_at" TIMESTAMPTZ NOT NULL,
+	"updated_at" TIMESTAMPTZ
+);
+
