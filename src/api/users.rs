@@ -1,3 +1,4 @@
+use crate::api::errors::ApiResult;
 use crate::app::App;
 use crate::models::user::{NewUser, User};
 use crate::schema::users;
@@ -12,7 +13,7 @@ pub fn routes() -> Vec<Route> {
 }
 
 #[get("/")]
-async fn list_users(app: &State<App>, pagination: Pagination) -> Result<PaginatedJson<User>> {
+async fn list_users(app: &State<App>, pagination: Pagination) -> ApiResult<PaginatedJson<User>> {
     let mut conn = app.connections.get().await?;
     let count = users::table.count().get_result::<i64>(&mut conn).await? as u32;
     let data: Vec<User> = users::table
