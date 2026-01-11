@@ -22,6 +22,7 @@ async fn main() -> Result<()> {
         .attach(App::new()?)
         .mount("/misc", api::misc::routes())
         .mount("/users", api::users::routes())
+        .register("/", api::misc::catchers())
         .launch()
         .await?;
 
